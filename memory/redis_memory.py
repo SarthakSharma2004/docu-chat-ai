@@ -1,4 +1,4 @@
-from langchain.memory import RedisChatMessageHistory
+from langchain_community.chat_message_histories import RedisChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from core.config import get_settings
 
@@ -16,7 +16,7 @@ class RedisMemoryManager:
     def get_history(self, session_id: str) -> BaseChatMessageHistory:
         return RedisChatMessageHistory(
             session_id = session_id,
-            connection_string = self.redis_client
+            url = self.redis_client
         )
     
 memory_manager = RedisMemoryManager()
