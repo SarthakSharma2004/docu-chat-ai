@@ -18,6 +18,6 @@ class ContextualizePrompt:
 
         return ChatPromptTemplate.from_messages([
             ("system", system_prompt),
-            MessagesPlaceholder(variable_name="chat_history"),  # must match memory key
-            ("human", "{input}")  # string placeholder, not python variable
+            MessagesPlaceholder(variable_name="chat_history"), 
+            ("human", "{input}")  
         ])

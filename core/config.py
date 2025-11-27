@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     GROQ_MODEL: str = Field(default="llama-3.3-70b-versatile", description="GROQ model name")
 
 
-    REDIS_URL: str = Field(default="redis://localhost:6379/0", description="Redis URL")
+    REDIS_URL: str = Field(..., description="Redis URL")
 
 
     MAX_FILE_SIZE: int = Field(default=10 * 1024 * 1024, description="Max file size in bytes")
@@ -50,3 +50,10 @@ def get_settings() -> Settings:
 
 
 
+if __name__ == "__main__":
+    settings = get_settings()
+   
+
+    import redis
+    r = redis.from_url(settings.REDIS_URL)
+    r.flushdb() 

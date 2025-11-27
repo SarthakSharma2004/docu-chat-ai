@@ -22,3 +22,4 @@ langchain-groq==0.3.8
 langchain-huggingface==0.3.1
 langchain-text-splitters==0.3.11
 langsmith==0.4.21
+sentence-transformers

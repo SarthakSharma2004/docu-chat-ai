@@ -21,7 +21,7 @@ class RedisMemoryManager:
     
 memory_manager = RedisMemoryManager()
 
-def get_session_history(session_id: str) -> BaseChatMessageHistory:
+def get_session_history(session_id: str) :
     '''
     wrapper method for langchain's 'runnable with message history'
     '''
@@ -30,4 +30,14 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 
 
 
+if __name__ == "__main__":
+    # Test
+    history = get_session_history("test123")
+    history.add_user_message("Hello!")
+    history.add_ai_message("Hi!")
+    
+    # Test persistence
+    history2 = get_session_history("test123")
+    print(history2.messages)
+    
 

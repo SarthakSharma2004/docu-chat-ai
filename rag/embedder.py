@@ -9,7 +9,9 @@ class EmbedderModel:
     '''
 
     def __init__(self):
-        self.embedder = HuggingFaceEmbeddings(model_name = settings.HUGGINGFACE_EMBEDDING_MODEL)
+        self.embedder = HuggingFaceEmbeddings(
+            model_name = settings.HUGGINGFACE_EMBEDDING_MODEL
+        )
 
 
     def get_embedder(self):
