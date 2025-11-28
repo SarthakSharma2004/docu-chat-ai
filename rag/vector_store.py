@@ -1,15 +1,14 @@
-# rag/vector_store.py
 
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 from langchain.schema import Document
 from core.config import get_settings
-from rag.embedder import Embedder
+from rag.embedder import EmbedderModel
 
 settings = get_settings()
 
 # Load embedder once
-embedder = Embedder.get_embedder()
+embedder = EmbedderModel().get_embedder()
 
 # Pinecone client
 pc = Pinecone(api_key=settings.PINECONE_API_KEY)
@@ -27,29 +26,32 @@ class VectorStore:
         Returns the vectorstore object.
         """
 
+        try : 
         # 1) Create index if it doesn't exist
-        existing_indexes = [i["name"] for i in pc.list_indexes()]
+            existing_indexes = [i["name"] for i in pc.list_indexes()]
 
-        if index_name not in existing_indexes:
-            pc.create_index(
-                name=index_name,
-                dimension=768,              # embedding dimension
-                metric="cosine",
-                spec=ServerlessSpec(
-                    cloud="aws",
-                    region="us-east-1"
+            if index_name not in existing_indexes:
+                pc.create_index(
+                    name=index_name,
+                    dimension=768,              # embedding dimension
+                    metric="cosine",
+                    spec=ServerlessSpec(
+                        cloud="aws",
+                        region="us-east-1"
+                    )
                 )
+
+            # 2) Build Pinecone vector store
+            vectorstore = PineconeVectorStore.from_documents(
+                documents=chunks,
+                embedding=embedder,
+                index_name=index_name
             )
 
-        # 2) Build Pinecone vector store
-        vectorstore = PineconeVectorStore.from_documents(
-            documents=chunks,
-            embedding=embedder,
-            index_name=index_name
-        )
+            return vectorstore
 
-        return vectorstore
-
+        except Exception as e:
+            raise RuntimeError(f"Failed to create Pinecone vector store: {e}")
 
 
 

@@ -3,21 +3,27 @@
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain_pinecone import PineconeVectorStore
 from langchain_groq import ChatGroq
+from core.config import get_settings
+
+
 class Retriever:
 
     @staticmethod
-    def get_retriever(vector_store: PineconeVectorStore, llm, k : int = 6):
-        base_retriever = vector_store.as_retriever(
-            search_kwargs={"k": k}
-        )
+    def get_retriever(vector_store: PineconeVectorStore, llm, k: int = 6) -> MultiQueryRetriever:
 
-        multi_query_retriever = MultiQueryRetriever.from_llm(
-            llm = llm,
-            retriever = base_retriever,
-            include_original = True
-        )
+        try : 
+            base_retriever = vector_store.as_retriever(
+                search_kwargs={"k": k}
+            )
+            mqr = MultiQueryRetriever.from_llm(
+                llm = llm, 
+                retriever = base_retriever
+            )
 
-        return multi_query_retriever
+            return mqr
+
+        except Exception as e:
+            raise RuntimeError(f"Error creating retriever: {e}")
 
     
 

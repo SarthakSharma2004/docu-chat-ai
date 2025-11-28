@@ -4,7 +4,7 @@ from core.config import get_settings
 
 settings = get_settings()
 
-class RedisMemoryManager:
+class RedisMemoryManager: 
     '''
     Redis-based chat history.
     Returns a RedisChatMessageHistory object per session_id.
@@ -30,6 +30,7 @@ def get_session_history(session_id: str) :
 
 
 
+
 if __name__ == "__main__":
     # Test
     history = get_session_history("test123")
@@ -39,5 +40,7 @@ if __name__ == "__main__":
     # Test persistence
     history2 = get_session_history("test123")
     print(history2.messages)
+    history.clear()
+    print("Cleared!")
     
 
