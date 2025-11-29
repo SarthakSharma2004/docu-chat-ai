@@ -5,6 +5,7 @@ import os
 import tempfile
 import shutil
 
+from schema.models import QueryRequest, QueryResponse
 from prompts.rag_prompt import RagPrompt
 from parser.document_loader import DocumentLoader
 from memory.redis_memory import RedisMemoryManager
@@ -117,14 +118,13 @@ async def build_index(file: UploadFile = File(..., description="Upload a PDF or 
 # User Input
 #-------------
 
-@app.post("/query")
-async def query_documents(session_id: str, question: str):
+@app.post("/query", response_model= QueryResponse)
+async def query_documents(request: QueryRequest):
+    session_id = request.session_id
+    question = request.question
     try:
         response = pipeline.user_input(session_id, question)
-        return JSONResponse(
-            status_code=200,
-            content= {"answer": response}
-        )
+        return {"answer": response}
     
     except Exception as e:
         raise HTTPException(
