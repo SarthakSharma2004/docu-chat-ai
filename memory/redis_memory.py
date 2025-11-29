@@ -13,10 +13,11 @@ class RedisMemoryManager:
     def __init__(self):
         self.redis_client = settings.REDIS_URL
 
-    def get_history(self, session_id: str) -> BaseChatMessageHistory:
+    def get_history(self, session_id: str, ttl_hours: int = 24) -> BaseChatMessageHistory:
         return RedisChatMessageHistory(
             session_id = session_id,
-            url = self.redis_client
+            url = self.redis_client,
+            ttl= ttl_hours*3600
         )
     
 memory_manager = RedisMemoryManager()

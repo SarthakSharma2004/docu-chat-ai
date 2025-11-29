@@ -7,11 +7,14 @@ from rag.embedder import EmbedderModel
 
 settings = get_settings()
 
-# Load embedder once
-embedder = EmbedderModel().get_embedder()
 
-# Pinecone client
-pc = Pinecone(api_key=settings.PINECONE_API_KEY)
+_pc_cache = None
+def get_pinecone_client():
+    global _pc_cache
+    if _pc_cache is None:
+        _pc_cache = Pinecone(api_key=settings.PINECONE_API_KEY)
+    return _pc_cache
+
 
 
 class VectorStore:
@@ -20,14 +23,20 @@ class VectorStore:
     """
 
     @staticmethod
-    def build_vector_store(chunks: list[Document], index_name: str = "docu-chat-index"):
+    def build_vector_store(chunks: list[Document], namespace:str, index_name: str = "docu-chat-index"):
         """
         Splits → embeds → stores chunks into Pinecone.
         Returns the vectorstore object.
         """
 
         try : 
-        # 1) Create index if it doesn't exist
+            # Load embedder 
+            embedder = EmbedderModel.get_embedder()
+
+            # Pinecone client
+            pc = get_pinecone_client()
+
+            # 1) Create index if it doesn't exist
             existing_indexes = [i["name"] for i in pc.list_indexes()]
 
             if index_name not in existing_indexes:
@@ -41,11 +50,14 @@ class VectorStore:
                     )
                 )
 
+    
+
             # 2) Build Pinecone vector store
             vectorstore = PineconeVectorStore.from_documents(
                 documents=chunks,
                 embedding=embedder,
-                index_name=index_name
+                index_name=index_name,
+               
             )
 
             return vectorstore

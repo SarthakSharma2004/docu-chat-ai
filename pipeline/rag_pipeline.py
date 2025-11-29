@@ -31,6 +31,7 @@ class RagPipeline:
         '''Builds vectorstore + MQR retriever on top'''
 
         try : 
+
             loader = DocumentLoader()
             docs = loader.load(file_path)
             
