@@ -124,7 +124,7 @@ async def query_documents(request: QueryRequest):
     question = request.question
     try:
         response = pipeline.user_input(session_id, question)
-        return {"answer": response}
+        return response
     
     except Exception as e:
         raise HTTPException(

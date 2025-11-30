@@ -13,7 +13,8 @@ from langchain.chains import create_retrieval_chain, create_history_aware_retrie
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
-
+from rag.reranker import ReRanker
+from langchain_core.runnables import RunnableLambda
 
 
 class RagPipeline:
@@ -21,6 +22,7 @@ class RagPipeline:
         
         self.llm = llm
         self.index_name = index_name
+        self.reranker = ReRanker()
         self.vectorstore = None
         self.retriever = None
         self.rag_chain = None
@@ -65,6 +67,21 @@ class RagPipeline:
                 ContextualizePrompt.get_contextualize_prompt()
             )
 
+            # -----------Reranking--------------
+            def retrieve_and_rerank(inputs: dict):
+                """inputs = {'input': user_question, 'chat_history': [...]}"""
+
+                query = inputs["input"]
+
+                raw_docs = history_aware_retriever.invoke(inputs)
+
+                reranked_docs = self.reranker.rerank(query, raw_docs)
+
+                return reranked_docs
+            
+            
+            reranked_retriever = RunnableLambda(retrieve_and_rerank)
+
             # --------stuff documents chain ------------
             question_ans_chain = create_stuff_documents_chain(
                 self.llm,
@@ -73,7 +90,7 @@ class RagPipeline:
 
             # --------Retrieval chain ----------------
             rag_chain = create_retrieval_chain(
-                history_aware_retriever, 
+                reranked_retriever, # History-aware retriever rewrites the query then Retriever fetches relevant chunks -> Those chunks flow into the question_ans chain as context
                 question_ans_chain
             )
             self.rag_chain = rag_chain
@@ -84,6 +101,7 @@ class RagPipeline:
         
 
     # ---- RAG + MEMORY CHAIN (REDIS) ---------
+
     def build_rag_with_memory(self):
         if not self.rag_chain:
             self.build_rag_chain()
@@ -111,7 +129,19 @@ class RagPipeline:
                 {"input": question},
                 config= {"configurable": {"session_id": session_id}}
             )
-            return response['answer']
+
+            if "context" in response:
+
+                return {
+                    "answer": response['answer'],
+                    "sources": [{"content": doc.page_content[:200] + "...", "meta": str(doc.metadata.get("source", "Unknown")), "page": str(doc.metadata.get("page", "N/A"))} for doc in response["context"]]
+                }
+            
+            else:
+                return {
+                    "answer": response['answer'],
+                    "sources": []
+                }
         
         except Exception as e:
             raise RuntimeError(f"Error processing user input: {e}")
