@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env
+*.env
+
+# OS files
+.DS_Store
+
+# Cache & logs
+*.log
+.cache/
+pip-cache/
+
+# IDE files
+.vscode/
+.idea/
+
+# Streamlit cache
+.streamlit/
+app.py
+
+# Uploaded files (optional)
+uploads/
+data/
+temp/
+tmp/
+
+# Git
+.git/
+.gitignore
+
+# Docker
+docker-compose.yml
