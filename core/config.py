@@ -31,6 +31,9 @@ class Settings(BaseSettings):
     REDIS_URL: str = Field(..., description="Redis URL")
 
 
+    COHERE_API_KEY: str = Field(..., description= "cohere (reranker) api key")
+
+
     MAX_FILE_SIZE: int = Field(default=10 * 1024 * 1024, description="Max file size in bytes")
 
 
