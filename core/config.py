@@ -22,6 +22,7 @@ class Settings(BaseSettings):
 
 
     HUGGINGFACE_EMBEDDING_MODEL: str = Field(default="sentence-transformers/all-mpnet-base-v2", description="HuggingFace Embedding model name")
+    GEMINI_EMBEDDING_MODEL: str = Field(default="gemini-embedding-001", description="GEMINI Embedding model name")
 
 
     GEMINI_MODEL: str = Field(default="gemini-2.5-flash", description="GEMINI model name")

@@ -18,7 +18,7 @@ from langchain_core.runnables import RunnableLambda
 
 
 class RagPipeline:
-    def __init__(self, llm: BaseChatModel, index_name: str = "docu-chat-index"):
+    def __init__(self, llm: BaseChatModel, index_name: str = "docu-chat-index-3072"):
         
         self.llm = llm
         self.index_name = index_name
