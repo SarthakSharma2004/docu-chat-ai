@@ -3,8 +3,9 @@ from streamlit_option_menu import option_menu
 import requests
 import uuid
 
-API_URL = "http://43.205.254.48:8001"
+API_URL = st.secrets["API_URL"]
 
+st.secrets
 st.set_page_config(page_title="DocuChat.io", page_icon="💬", layout="centered")
 
 
