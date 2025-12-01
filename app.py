@@ -138,6 +138,7 @@ elif page == "Upload Document":
     # Ask user for session_id
     st.session_state.session_id = st.text_input(
         "Enter Your User ID (Session ID):",
+        placeholder= "e.g. user123",
         value=st.session_state.session_id
     )
 
