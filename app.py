@@ -5,7 +5,7 @@ import uuid
 
 API_URL = st.secrets["API_URL"]
 
-st.secrets
+
 st.set_page_config(page_title="DocuChat.io", page_icon="💬", layout="centered")
 
 
