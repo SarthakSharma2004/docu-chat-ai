@@ -112,6 +112,22 @@ if page == "Home":
     unsafe_allow_html=True,
     )
 
+    # --- DEMO VIDEO BUTTON ---
+    demo_url = "https://drive.google.com/file/d/1l-sXufC5-h8DUUvKQJMBzM_eLiaJ/view?usp=drive_link"
+
+    st.markdown(
+        f"""
+        <div style='text-align:center;'>
+            <a href="{demo_url}" target="_blank">
+                <button style='padding:12px 25px; font-size:16px; border:none; border-radius:8px; background-color:#4C9FFF; color:white; cursor:pointer;'>
+                    ▶ Check Demo Video
+                </button>
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 # ---------------------------------------------------------
 # UPLOAD DOCUMENT PAGE
