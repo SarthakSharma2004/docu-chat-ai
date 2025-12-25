@@ -37,6 +37,17 @@
 
 - Built with a FastAPI backend and Streamlit chat UI, DocuChat is fully containerized using Docker, monitored via LangSmith, and deployed on AWS for scalable, low-latency inference.
 
+🚀 Live Demo
+
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live%20Demo-FF4B4B?logo=streamlit&logoColor=white)](https://docu-chat-io.streamlit.app/)
+
+</div>
+
+
+📦 Docker Image (Pull image from Docker Hub)
+
+[![Docker Image](https://img.shields.io/badge/Docker-Hub%20Registry-2496ED?logo=docker&logoColor=white)](https://hub.docker.com/repository/docker/isarthak24/docuchat/tags)
+
 
 
 ---
@@ -105,30 +116,22 @@
 
 ## 🚀 Key Features
 
-- **Advanced Conversational RAG**
-  - Enables natural, multi-turn conversations over uploaded documents with context retention across interactions.
+  - 🧠 Conversational RAG  - Enables natural, multi-turn conversations over uploaded documents with context retention across interactions.
 
-- **Multi-Query Semantic Retrieval**
-  - Expands user queries into multiple semantic variants to improve document coverage and retrieval recall.
+  - 🔍 Multi-Query Retrieval – Improves recall via semantic query expansion
 
-- **Cross-Encoder–Based Re-Ranking**
-  - Applies transformer-based re-ranking on retrieved chunks to prioritize the most contextually relevant passages, significantly improving response precision.
+  - 🎯 Cross-Encoder Re-Ranking – Boosts precision with relevance-based ranking
 
-- **Persistent Conversational Memory**
-  - Stores session-based chat history in Redis Cloud, enabling coherent conversations with ultra-low retrieval latency.
+  - 🧵 Session Memory – Persistent chat context using Redis Cloud
 
-- **Scalable Vector Search**
-  - Utilizes Pinecone for efficient and scalable similarity search across large document collections.
+  - 📦 Scalable Vector Search – Fast similarity search powered by Pinecone
 
-- **Ultra-Fast LLM Inference**
-  - Leverages LLaMA models served via Groq for low-latency, high-throughput response generation.
+  - ⚡ Low-Latency Inference – LLaMA served via Groq for ultra-fast responses
 
-- **Production-Ready Deployment**
-  - Fully containerized using Docker, deployed on AWS EC2, and monitored end-to-end using LangSmith.
+  - 🐳 Production-Ready – Dockerized, deployed on AWS, monitored with LangSmith
 
-- **Interactive Chat UI**
-  - Clean, chat-style Streamlit interface for seamless document upload and real-time interaction.
-
+  - 💬 Chat-Style UI – Clean Streamlit interface for real-time interaction
+  
 
 
 ---
