@@ -184,3 +184,20 @@ streamlit run app.py
 docker build -t docuchat .
 docker run -p 8000:8000 -p 8501:8501 --env-file .env docuchat
 ```
+
+
+
+---
+
+
+
+## 👨‍💻 Author
+
+Sarthak Sharma
+
+Data Science  |  Machine Learning  |  Deep Learning  |   NLP  |  GenAI
+
+[![Email](https://img.shields.io/badge/Email-Write-blue?logo=gmail)](mailto:sarthaksharma@gmail.com)
+
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sarthak-sharma-2004/)
