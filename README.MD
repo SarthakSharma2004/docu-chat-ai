@@ -19,28 +19,35 @@
 
 </div>
 
+---
 
-# DocuChat 🧠📄
+# 🧠📄 DocuChat - A Conversational RAG-Based Document Chat System
 
-#### A Conversational RAG-Based Document Chat System
+
 
 ---
 
+
+
 ## 📄 Overview
 
-- DocuChat is a production-grade conversational AI system that enables intelligent, multi-turn interactions over user-uploaded documents using an advanced Retrieval-Augmented Generation (RAG) architecture.
+- DocuChat is a conversational AI system that enables intelligent, multi-turn interactions over user-uploaded documents using an advanced Retrieval-Augmented Generation (RAG) architecture.
 
 - The system combines multi-query semantic retrieval, cross-encoder–based re-ranking, and persistent conversational memory to deliver highly accurate, context-aware responses across long documents.
 
 - Built with a FastAPI backend and Streamlit chat UI, DocuChat is fully containerized using Docker, monitored via LangSmith, and deployed on AWS for scalable, low-latency inference.
 
+
+
 ---
+
+
 
 ## 🧠 System Architecture
 
 
 1. **Document Upload & Parsing**
-   - Users upload PDFs or text documents via the Streamlit UI.
+   - Users upload PDFs or word documents via the Streamlit UI.
    - Documents are chunked and preprocessed using LangChain document loaders.
 
 2. **Embedding & Vector Storage**
@@ -66,7 +73,11 @@
 7. **Observability & Monitoring**
    - End-to-end pipeline traces are logged using LangSmith for debugging, evaluation, and performance monitoring.
 
+
+
 ---
+
+
 
 ## ⚙️ Tech Stack
 
@@ -87,7 +98,10 @@
 | **Cloud Deployment** | AWS EC2 |
 
 
+
 ---
+
+
 
 ## 🚀 Key Features
 
@@ -116,7 +130,9 @@
   - Clean, chat-style Streamlit interface for seamless document upload and real-time interaction.
 
 
+
 ---
+
 
 
 ## 🛠️ Installation & Setup
@@ -125,10 +141,11 @@
 
 ```bash
 git clone https://github.com/SarthakSharma2004/docu-chat-ai.git
+```
 
+### 🔑 Environment Variables
 
-🔑 Environment Variables
-
+```bash
 Create a .env file in the root directory:
 
 GOOGLE_API_KEY=
@@ -139,10 +156,20 @@ LANGCHAIN_PROJECT=
 PINECONE_API_KEY=
 REDIS_URL=
 COHERE_API_KEY=
+```
 
+### 🎨 Run Locally (Without Docker)
 
-Run Locally (Without Docker)
-
+```bash
 pip install -r requirements.txt
-uvicorn app.main:app --reload
-streamlit run ui/app.py
+uvicorn main:app --reload
+streamlit run app.py
+```
+
+
+### 🐳 Run with Docker 
+
+```bash
+docker build -t docuchat .
+docker run -p 8000:8000 -p 8501:8501 --env-file .env docuchat
+```
