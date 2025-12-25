@@ -116,19 +116,19 @@
 
 ## 🚀 Key Features
 
-  - 🧠 Conversational RAG  - Enables natural, multi-turn conversations over uploaded documents with context retention across interactions.
+  ### 🧠 Conversational RAG  - Enables natural, multi-turn conversations over uploaded documents with context retention across interactions.
 
-  - 🔍 Multi-Query Retrieval – Improves recall via semantic query expansion
+  ### 🔍 Multi-Query Retrieval – Improves recall via semantic query expansion
 
-  - 🎯 Cross-Encoder Re-Ranking – Boosts precision with relevance-based ranking
+  ### 🎯 Cross-Encoder Re-Ranking – Boosts precision with relevance-based ranking
 
-  - 🧵 Session Memory – Persistent chat context using Redis Cloud
+  ### 🧵 Session Memory – Persistent chat context using Redis Cloud
 
-  - 📦 Scalable Vector Search – Fast similarity search powered by Pinecone
+  ### 📦 Scalable Vector Search – Fast similarity search powered by Pinecone
 
-  - ⚡ Low-Latency Inference – LLaMA served via Groq for ultra-fast responses
+  ### ⚡ Low-Latency Inference – LLaMA served via Groq for ultra-fast responses
 
-  - 🐳 Production-Ready – Dockerized, deployed on AWS, monitored with LangSmith
+  ### 🐳 Production-Ready – Dockerized, deployed on AWS, monitored with LangSmith
 
   - 💬 Chat-Style UI – Clean Streamlit interface for real-time interaction
   
