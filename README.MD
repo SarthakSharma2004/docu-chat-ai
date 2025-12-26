@@ -197,7 +197,6 @@ Sarthak Sharma
 
 Data Science  |  Machine Learning  |  Deep Learning  |   NLP  |  GenAI
 
-[![Email](https://img.shields.io/badge/Email-Write-blue?logo=gmail)](mailto:sarthaksharma@gmail.com)
+[![Email](https://img.shields.io/badge/Email-Gmail-D14836?logo=gmail&logoColor=white)](mailto:2sarthaksharma@gmail.com)
 
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sarthak-sharma-2004/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sarthak-sharma-860b22259)
